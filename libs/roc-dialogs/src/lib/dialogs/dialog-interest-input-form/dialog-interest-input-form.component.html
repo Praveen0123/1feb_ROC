@@ -1,0 +1,177 @@
+<!-- HEADIND -->
+<roc-lib-dialog-title [title]="'Interested in learning more? Connect with us.'"></roc-lib-dialog-title>
+
+<!-- INTEREST INPUT FORM -->
+<section class="p-5">
+  <form [formGroup]="interestInputForm"
+        novalidate>
+
+    <!-- FIRST NAME -->
+    <div class="grid grid-flow-col grid-rows-1 gap-2 font-normal">
+      <div class="font-normal flex-4">
+        <h3 class="">First Name <span class="text-red-600 ">*</span></h3>
+
+        <mat-form-field class="w-80"
+                        appearance="outline">
+
+          <input matInput
+                 placeholder=""
+                 required
+                 formControlName="first_name">
+
+          <mat-error *ngIf="interestInputForm.controls.first_name.hasError('required')
+                          || (interestInputForm.controls.first_name.invalid && interestInputForm.controls.first_name.touched)">
+            Please enter your first name.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="font-normal flex-4">
+        <h3 class="">Last Name <span class="text-red-600 ">*</span></h3>
+        <mat-form-field class="w-80"
+                        appearance="outline">
+
+          <input matInput
+                 placeholder=""
+                 required
+                 formControlName="last_name">
+
+          <mat-error *ngIf="interestInputForm.controls.last_name.hasError('required')
+                          || (interestInputForm.controls.last_name.invalid && interestInputForm.controls.last_name.touched)">
+            Please enter your last name.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- EMAIL ADDRESS -->
+    <div class="grid grid-flow-col grid-rows-1 gap-2">
+      <div class="font-normal flex-4">
+        <h3 class="">Email Address <span class="text-red-600 ">*</span></h3>
+
+        <mat-form-field class=" w-80"
+                        appearance="outline">
+
+          <input matInput
+                 placeholder=""
+                 required
+                 formControlName="email">
+          <mat-error *ngIf="interestInputForm.controls.email.hasError('required')
+                          || (interestInputForm.controls.email.invalid && interestInputForm.controls.email.touched)">
+            Please enter a valid email address.
+          </mat-error>
+
+
+        </mat-form-field>
+      </div>
+      <!-- PHONE -->
+      <div class="font-normal flex-4">
+        <h3 class="">Phone <span class="text-gray-300 ">(Optional)</span></h3>
+        <mat-form-field class="w-80"
+                        appearance="outline">
+
+          <input matInput
+                 placeholder=""
+                 formControlName="phone"
+                 mask="000-000-0000">
+
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- ORGANIZATION -->
+    <div class="grid grid-flow-col grid-rows-1 gap-2">
+      <div class="flex-4">
+        <h3 class="">Organization <span class="text-red-600 ">*</span></h3>
+
+        <mat-form-field class="w-80"
+                        appearance="outline">
+
+          <input matInput
+                 placeholder=""
+                 required
+                 formControlName="organization">
+
+          <mat-error *ngIf="interestInputForm.controls.organization.hasError('required')
+                          || (interestInputForm.controls.organization.invalid && interestInputForm.controls.organization.touched)">
+            Please enter a organization.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- YOUR ROLE -->
+      <div class="flex-4">
+        <h3 class="">Your Role <span class="text-red-600">*</span></h3>
+        <mat-form-field class="w-80"
+                        appearance="outline">
+          <input matInput
+                 placeholder=""
+                 required
+                 formControlName="job_title">
+
+          <mat-error *ngIf="interestInputForm.controls.job_title.hasError('required')
+                          || (interestInputForm.controls.job_title.invalid && interestInputForm.controls.job_title.touched)">
+            Please enter your role.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="flex-4">
+      <h3 class="">Which products are you interested in learning more? <span class="text-red-600 ">*</span></h3>
+      <mat-form-field class="w-full"
+                      appearance="outline">
+
+        <mat-select placeholder="Please Select"
+                    required
+                    (selectionChange)="
+                productSelected($event.value)"
+                    formControlName="products">
+          <mat-option [value]="option"
+                      *ngFor="let option of products">{{ option }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="interestInputForm.controls.products.hasError('required')
+                          || (interestInputForm.controls.products.invalid && interestInputForm.controls.products.touched)">
+          Please select a products.
+        </mat-error>
+
+      </mat-form-field>
+    </div>
+
+    <!-- ADDITIONAL INFORMATION -->
+    <div class="flex-4">
+      <h3 class="">Additional Information <span class="text-red-600 ">*</span></h3>
+      <mat-form-field class="w-full"
+                      appearance="outline">
+
+        <textarea rows="4"
+                  matInput
+                  required
+                  formControlName="description"></textarea>
+
+
+        <mat-error *ngIf="interestInputForm.controls.description.hasError('required')
+                          || (interestInputForm.controls.description.invalid && interestInputForm.controls.description.touched)">
+          Please enter a additional information.
+        </mat-error>
+
+      </mat-form-field>
+    </div>
+
+    <div class="grid grid-flow-col grid-rows-1 gap-2">
+      <!-- REQUIRED FIELD -->
+      <div class="flex-4">
+        <h3><span class="text-red-600 ">* </span> Required Field</h3>
+
+      </div>
+      <!-- SEND REQUEST -->
+      <div class="ml-28 flex-4">
+        <button class="content-end px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 ml-80"
+                (click)="interestInputFormSubmit()">
+          Send Request
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
